@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SuperLig2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Antrenors">
+          <Key>
+            <PropertyRef Name="AntrenorId" />
+          </Key>
+          <Property Name="AntrenorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AntrenorAdi" Type="nvarchar(max)" />
+          <Property Name="Yas" Type="int" Nullable="false" />
+          <Property Name="TakimI" Type="nvarchar(max)" />
+          <Property Name="Ulke" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="OynadigiTakim" Type="nvarchar(max)" />
+          <Property Name="Yas" Type="int" Nullable="false" />
+          <Property Name="FormaNumarasi" Type="int" Nullable="false" />
+          <Property Name="Takims_TakimId" Type="int" />
+        </EntityType>
+        <EntityType Name="Takims">
+          <Key>
+            <PropertyRef Name="TakimId" />
+          </Key>
+          <Property Name="TakimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TakimAd" Type="nvarchar(max)" />
+          <Property Name="KurulusTarihi" Type="nvarchar(max)" />
+          <Property Name="AntrenorAdi" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_Players_dbo_Takims_Takims_TakimId">
+          <End Role="Takims" Type="Self.Takims" Multiplicity="0..1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Takims">
+              <PropertyRef Name="TakimId" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="Takims_TakimId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuperLig2ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Antrenors" EntityType="Self.Antrenors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Takims" EntityType="Self.Takims" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Players_dbo_Takims_Takims_TakimId" Association="Self.FK_dbo_Players_dbo_Takims_Takims_TakimId">
+            <End Role="Takims" EntitySet="Takims" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SuperLig2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Antrenors">
+          <Key>
+            <PropertyRef Name="AntrenorId" />
+          </Key>
+          <Property Name="AntrenorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AntrenorAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Yas" Type="Int32" Nullable="false" />
+          <Property Name="TakimI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ulke" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OynadigiTakim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Yas" Type="Int32" Nullable="false" />
+          <Property Name="FormaNumarasi" Type="Int32" Nullable="false" />
+          <Property Name="Takims_TakimId" Type="Int32" />
+          <NavigationProperty Name="Takims" Relationship="Self.FK_dbo_Players_dbo_Takims_Takims_TakimId" FromRole="Players" ToRole="Takims" />
+        </EntityType>
+        <EntityType Name="Takims">
+          <Key>
+            <PropertyRef Name="TakimId" />
+          </Key>
+          <Property Name="TakimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TakimAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KurulusTarihi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AntrenorAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Players" Relationship="Self.FK_dbo_Players_dbo_Takims_Takims_TakimId" FromRole="Takims" ToRole="Players" />
+        </EntityType>
+        <Association Name="FK_dbo_Players_dbo_Takims_Takims_TakimId">
+          <End Role="Takims" Type="Self.Takims" Multiplicity="0..1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Takims">
+              <PropertyRef Name="TakimId" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="Takims_TakimId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuperLig2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Antrenors" EntityType="Self.Antrenors" />
+          <EntitySet Name="Players" EntityType="Self.Players" />
+          <EntitySet Name="Takims" EntityType="Self.Takims" />
+          <AssociationSet Name="FK_dbo_Players_dbo_Takims_Takims_TakimId" Association="Self.FK_dbo_Players_dbo_Takims_Takims_TakimId">
+            <End Role="Takims" EntitySet="Takims" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SuperLig2ModelStoreContainer" CdmEntityContainer="SuperLig2Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SuperLig2Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Antrenors">
+            <EntityTypeMapping TypeName="SuperLig2Model.Antrenors">
+              <MappingFragment StoreEntitySet="Antrenors">
+                <ScalarProperty Name="AntrenorId" ColumnName="AntrenorId" />
+                <ScalarProperty Name="AntrenorAdi" ColumnName="AntrenorAdi" />
+                <ScalarProperty Name="Yas" ColumnName="Yas" />
+                <ScalarProperty Name="TakimI" ColumnName="TakimI" />
+                <ScalarProperty Name="Ulke" ColumnName="Ulke" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="SuperLig2Model.Players">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="OynadigiTakim" ColumnName="OynadigiTakim" />
+                <ScalarProperty Name="Yas" ColumnName="Yas" />
+                <ScalarProperty Name="FormaNumarasi" ColumnName="FormaNumarasi" />
+                <ScalarProperty Name="Takims_TakimId" ColumnName="Takims_TakimId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Takims">
+            <EntityTypeMapping TypeName="SuperLig2Model.Takims">
+              <MappingFragment StoreEntitySet="Takims">
+                <ScalarProperty Name="TakimId" ColumnName="TakimId" />
+                <ScalarProperty Name="TakimAd" ColumnName="TakimAd" />
+                <ScalarProperty Name="KurulusTarihi" ColumnName="KurulusTarihi" />
+                <ScalarProperty Name="AntrenorAdi" ColumnName="AntrenorAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
